@@ -1,14 +1,28 @@
-import '../styles/globals.css'
-import type { AppProps } from 'next/app'
-import { CssBaseline, ThemeProvider } from '@mui/material'
+import Document, { DocumentContext, Html, Head, Main, NextScript } from 'next/document'
 
-import { lightTheme } from '../themes'
+class MyDocument extends Document {
+  static async getInitialProps(ctx: DocumentContext) {
+    const initalProps = await Document.getInitialProps(ctx)
 
-export default function App({ Component, pageProps }: AppProps) {
-  return (
-    <ThemeProvider theme={lightTheme}>
-      <CssBaseline />
-      <Component {...pageProps} />
-    </ThemeProvider>
-  )
+    return initalProps
+  }
+
+  render() {
+    return (
+      <Html>
+        <Head>
+          <link
+            rel="stylesheet"
+            href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;600;700&display=swap"
+          />
+        </Head>
+        <body>
+          <Main />
+          <NextScript />
+        </body>
+      </Html>
+    )
+  }
 }
+
+export default MyDocument
